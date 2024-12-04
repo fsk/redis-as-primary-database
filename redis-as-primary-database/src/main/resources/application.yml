@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: redis-as-primary-database
+  data:
+    redis:
+      host: localhost
+      port: 6380
+      password: redisdb
+      repositories:
+        enabled: true
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+        timeout: 60000
+      enable-keyspace-events: true
