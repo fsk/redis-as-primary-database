@@ -1,0 +1,23 @@
+version: '3'
+services:
+  redis-primary:
+    image: redis:latest
+    volumes:
+      - ./redis-data:/app/redis-data
+      - ./redis.conf:/app/redis.conf
+    working_dir: /app
+    command: redis-server /app/redis.conf
+    ports:
+      - "6380:6379"
+    networks:
+      - redis-network
+    environment:
+      - REDIS_PASSWORD=redisdb
+
+volumes:
+  redis-data:
+    driver: local
+
+networks:
+  redis-network:
+    driver: bridge 
