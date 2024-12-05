@@ -18,8 +18,8 @@ public class RedisConfig {
     public RedisConnectionFactory redisConnectionFactory() {
         RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
         config.setHostName("localhost");
-        config.setPort(6380);
-        config.setPassword("redisdb");
+        config.setPort(6379);
+        //config.setPassword("redisdb");
         return new LettuceConnectionFactory(config);
     }
 

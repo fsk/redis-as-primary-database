@@ -19,23 +19,23 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @PostMapping
+    @PostMapping("/createCustomer")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<CustomerResponse> createCustomer(@RequestBody CreateCustomerRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.createCustomer(request));
     }
 
-    @PutMapping
+    @PutMapping("/updateCustomer")
     public ResponseEntity<CustomerResponse> updateCustomer(@RequestBody UpdateCustomerRequest request) {
         return ResponseEntity.ok(customerService.updateCustomer(request));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/deleteCustomer")
     public ResponseEntity<DeleteCustomerResponse> deleteCustomer(@RequestBody DeleteCustomerRequest request) {
         return ResponseEntity.ok(customerService.deleteCustomer(request));
     }
 
-    @GetMapping
+    @GetMapping("/getCustomer")
     public ResponseEntity<CustomerResponse> getCustomer(@RequestBody GetCustomerRequest request) {
         return ResponseEntity.ok(customerService.getCustomer(request));
     }

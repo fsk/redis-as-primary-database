@@ -1,6 +1,6 @@
 package org.fsk.redisasprimarydatabase.dto.request.customerrequest;
 
 
-public record CustomerId(
+public record CustomerInformation(
     String customerId
 ) {}

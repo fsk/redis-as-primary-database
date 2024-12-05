@@ -1,6 +1,7 @@
 version: '3'
 services:
-  redis-primary:
+  redis-primary-database:
+    container_name: redis-primary-database
     image: redis:latest
     volumes:
       - ./redis-data:/app/redis-data

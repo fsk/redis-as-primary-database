@@ -34,11 +34,13 @@ public class AccountService {
 
     @Transactional
     public AccountResponse createAccount(CreateAccountRequest createAccountRequest) {
-        Customer customer = customerService.getCustomerById(createAccountRequest.customerId().toString());
+        Customer customer = customerService.getCustomerById(createAccountRequest.customerInformation().customerId());
+        
+        String accountNumber = generateAccountNumber();
         
         Account newAccount = Account.builder()
             .accountId(UUID.randomUUID().toString())
-            .accountNumber(createAccountRequest.accountNumber())
+            .accountNumber(accountNumber)
             .customer(customer)
             .accountType(createAccountRequest.accountType())
             .accountBalance(createAccountRequest.accountBalance())
@@ -135,5 +137,16 @@ public class AccountService {
             .isActive(customer.getIsActive())
             .createdAt(customer.getCreatedAt())
             .build();
+    }
+
+    private String generateAccountNumber() {
+        LocalDateTime now = LocalDateTime.now();
+        String datePrefix = String.format("%d%02d%02d", 
+            now.getYear(),
+            now.getMonthValue(),
+            now.getDayOfMonth()
+        );
+        String randomSuffix = String.format("%06d", (int)(Math.random() * 1000000));
+        return datePrefix + randomSuffix;
     }
 }

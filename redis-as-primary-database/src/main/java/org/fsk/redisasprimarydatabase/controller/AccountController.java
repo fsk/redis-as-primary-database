@@ -20,23 +20,23 @@ public class AccountController {
 
     private final AccountService accountService;
 
-    @PostMapping
+    @PostMapping("/createAccount")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<AccountResponse> createAccount(@RequestBody CreateAccountRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(accountService.createAccount(request));
     }
 
-    @PutMapping
+    @PutMapping("/updateAccount")
     public ResponseEntity<UpdateAccountResponse> updateAccount(@RequestBody UpdateAccountRequest request) {
         return ResponseEntity.ok(accountService.updateAccount(request));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/deleteAccount")
     public ResponseEntity<DeleteAccountResponse> deleteAccount(@RequestBody DeleteAccountRequest request) {
         return ResponseEntity.ok(accountService.deleteAccount(request));
     }
 
-    @GetMapping
+    @GetMapping("/getAccount")
     public ResponseEntity<AccountResponse> getAccount(@RequestBody GetAccountRequest request) {
         return ResponseEntity.ok(accountService.getAccount(request));
     }
